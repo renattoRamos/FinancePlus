@@ -1,0 +1,180 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Claymorphism Design System - Soft clay-like UI with earth tones */
+
+@layer base {
+  :root {
+    /* Clay background palette */
+    --background: 25 15% 98%; /* Very light orange */
+    --foreground: 30 8% 25%;
+
+    /* Clay surface colors */
+    --card: 38 20% 94%;
+    --card-foreground: 30 8% 25%;
+
+    --popover: 38 20% 94%;
+    --popover-foreground: 30 8% 25%;
+
+    /* Warm earth tones for primary */
+    --primary: 25 45% 55%;
+    --primary-foreground: 40 15% 96%;
+
+    /* Soft secondary clay */
+    --secondary: 35 25% 88%;
+    --secondary-foreground: 30 8% 25%;
+
+    /* Muted clay tones */
+    --muted: 35 20% 90%;
+    --muted-foreground: 30 5% 45%;
+
+    /* Accent warm terracotta */
+    --accent: 15 65% 70%;
+    --accent-foreground: 40 15% 96%;
+
+    /* Status colors */
+    --destructive: 0 70% 65%;
+    --destructive-foreground: 40 15% 96%;
+    
+    --success: 120 40% 55%;
+    --success-foreground: 40 15% 96%;
+
+    --warning: 45 85% 65%;
+    --warning-foreground: 30 8% 25%;
+
+    /* Clay borders and inputs */
+    --border: 35 15% 85%;
+    --input: 38 20% 92%;
+    --ring: 25 45% 55%;
+
+    /* Clay morphism radius */
+    --radius: 1.5rem;
+
+    /* Clay shadows - multiple layers for depth */
+    --shadow-clay-soft: 
+      0 2px 4px hsl(30 8% 25% / 0.08),
+      0 4px 8px hsl(30 8% 25% / 0.06);
+    
+    --shadow-clay-medium: 
+      0 4px 8px hsl(30 8% 25% / 0.12),
+      0 8px 16px hsl(30 8% 25% / 0.08),
+      inset 0 1px 0 hsl(40 30% 98%);
+    
+    --shadow-clay-strong: 
+      0 8px 16px hsl(30 8% 25% / 0.16),
+      0 16px 32px hsl(30 8% 25% / 0.12),
+      inset 0 2px 0 hsl(40 30% 98%);
+
+    --shadow-clay-inset:
+      inset 0 2px 4px hsl(30 8% 25% / 0.08),
+      inset 0 4px 8px hsl(30 8% 25% / 0.06);
+
+    /* Gradients */
+    --gradient-clay: linear-gradient(135deg, hsl(40 20% 95%), hsl(35 15% 92%));
+    --gradient-primary: linear-gradient(135deg, hsl(25 45% 55%), hsl(20 50% 50%));
+    --gradient-accent: linear-gradient(135deg, hsl(15 65% 70%), hsl(10 70% 65%));
+
+    /* New body gradient background */
+    --body-gradient-background: linear-gradient(135deg, hsl(25 15% 98%), hsl(20 10% 97%));
+
+    /* Animations */
+    --transition-clay: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Dark Clay background palette */
+    --background: 220 15% 10%; /* Soft black */
+    --foreground: 210 10% 85%; /* Light gray for primary text */
+
+    /* Dark Clay surface colors */
+    --card: 220 15% 14%; /* Slightly lighter than background */
+    --card-foreground: 210 10% 85%;
+
+    --popover: 220 15% 14%;
+    --popover-foreground: 210 10% 85%;
+
+    /* Primary color: #E49A81 (HSL: 15 65% 70%) */
+    --primary: 15 65% 70%;
+    --primary-foreground: 220 15% 12%; /* Dark text on primary */
+
+    /* Dark secondary clay */
+    --secondary: 220 15% 18%;
+    --secondary-foreground: 210 10% 85%;
+
+    /* Muted dark clay tones */
+    --muted: 220 15% 25%;
+    --muted-foreground: 210 10% 70%; /* Medium gray for secondary text */
+
+    /* Accent color: a complementary warm tone */
+    --accent: 30 40% 60%;
+    --accent-foreground: 220 15% 12%; /* Dark text on accent */
+
+    /* Status colors - adjusted for dark background */
+    --destructive: 0 75% 70%; /* Vibrant red */
+    --destructive-foreground: 220 15% 12%;
+    
+    --success: 120 50% 60%; /* Vibrant green */
+    --success-foreground: 220 15% 12%;
+
+    --warning: 45 90% 70%; /* Vibrant orange */
+    --warning-foreground: 220 15% 12%;
+
+    /* Dark Clay borders and inputs */
+    --border: 220 15% 20%;
+    --input: 220 15% 16%;
+    --ring: 15 65% 70%; /* Matches primary */
+
+    /* Dark shadows - subtle glows */
+    --shadow-clay-soft: 
+      0 2px 4px hsl(0 0% 0% / 0.1),
+      0 4px 8px hsl(0 0% 0% / 0.1);
+    
+    --shadow-clay-medium: 
+      0 4px 8px hsl(0 0% 0% / 0.15),
+      0 8px 16px hsl(0 0% 0% / 0.15),
+      inset 0 1px 0 hsl(220 15% 20%);
+    
+    --shadow-clay-strong: 
+      0 8px 16px hsl(0 0% 0% / 0.2),
+      0 16px 32px hsl(0 0% 0% / 0.2),
+      inset 0 2px 0 hsl(220 15% 22%);
+
+    --shadow-clay-inset:
+      inset 0 2px 4px hsl(0 0% 0% / 0.1),
+      inset 0 4px 8px hsl(0 0% 0% / 0.1);
+
+    /* Gradients for dark mode */
+    --gradient-clay: linear-gradient(135deg, hsl(220 15% 12%), hsl(220 15% 10%));
+    --gradient-primary: linear-gradient(135deg, hsl(15 65% 70%), hsl(10 70% 65%)); /* Adjusted for dark background */
+    --gradient-accent: linear-gradient(135deg, hsl(30 40% 60%), hsl(25 45% 55%)); /* Using new accent color */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    background: var(--body-gradient-background); /* Apply gradient directly */
+    @apply text-foreground;
+  }
+}
