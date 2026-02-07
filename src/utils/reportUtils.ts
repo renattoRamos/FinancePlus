@@ -28,7 +28,7 @@ export const formatDebtReport = (
                 maximumFractionDigits: 2,
             });
 
-            const content = `${dateStr} - ${debt.name}: ${amountStr}`;
+            const content = `${dateStr} - ${debt.name}: \`\`\`${amountStr}\`\`\``;
             return debt.status === "Pago" ? `* _~${content}~_` : `* ${content}`;
         })
         .join("\n");
