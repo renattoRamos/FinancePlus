@@ -23,13 +23,13 @@ export const formatDebtReport = (
             const dateStr = debt.dueDate
                 ? format(parseISO(debt.dueDate), "dd/MM/yyyy")
                 : "--/--/----";
-            const statusIcon = debt.status === "Pago" ? "✅" : "❌";
             const amountStr = debt.amount.toLocaleString("pt-BR", {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2,
             });
 
-            return `* ${dateStr} - ${debt.name}: ${amountStr} ${statusIcon}`;
+            const content = `${dateStr} - ${debt.name}: ${amountStr}`;
+            return debt.status === "Pago" ? `* _~${content}~_` : `* ${content}`;
         })
         .join("\n");
 

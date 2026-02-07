@@ -103,22 +103,45 @@ export const DebtDashboard = ({ selectedMonth, hasMonths, allAvailableMonths }: 
     setEditingDebt(undefined);
   };
 
-  const handleExportReport = () => {
+  const handleExportReport = async () => {
     const reportText = formatDebtReport(displayedDebts, selectedMonth, filterControls.filterStatus);
-    navigator.clipboard.writeText(reportText).then(() => {
+
+    try {
+      // 1. Copy to clipboard first while the document has focus
+      await navigator.clipboard.writeText(reportText);
+
+      // 2. If sharing is supported AND it's a mobile device, try to share
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+      if (navigator.share && isMobile) {
+        try {
+          await navigator.share({
+            title: `Dívidas - ${selectedMonth}`,
+            text: reportText,
+          });
+          // If shared successfully, we don't need the "copied" toast
+          return;
+        } catch (shareErr) {
+          // If aborted, just return (text is already in clipboard)
+          if ((shareErr as Error).name === 'AbortError') return;
+          console.error("Erro ao compartilhar: ", shareErr);
+        }
+      }
+
+      // 3. Show success toast if share wasn't used or failed (text is in clipboard)
       toast({
         title: "✅ Relatório copiado!",
         description: "O relatório foi copiado para a área de transferência.",
         variant: "success",
       });
-    }).catch((err) => {
-      console.error("Erro ao copiar relatório: ", err);
+    } catch (err) {
+      console.error("Erro ao exportar relatório: ", err);
       toast({
-        title: "❌ Erro ao copiar",
-        description: "Não foi possível copiar o relatório.",
+        title: "❌ Erro ao exportar",
+        description: "Não foi possível copiar ou compartilhar o relatório.",
         variant: "destructive",
       });
-    });
+    }
   };
 
   const allDebtsPaid = debts.length > 0 && debts.every(debt => debt.status === "Pago");
